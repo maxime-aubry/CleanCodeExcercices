@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj": {}
+    "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj": {}
   },
   "projects": {
-    "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj": {
+    "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj",
+        "projectUniqueName": "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj",
         "projectName": "Chapter14_8",
-        "projectPath": "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj",
+        "projectPath": "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj",
         "packagesPath": "C:\\Users\\maxim\\.nuget\\packages\\",
-        "outputPath": "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8\\obj\\",
+        "outputPath": "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\maxim\\AppData\\Roaming\\NuGet\\NuGet.Config",

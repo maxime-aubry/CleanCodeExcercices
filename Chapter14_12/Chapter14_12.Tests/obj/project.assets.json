@@ -3880,11 +3880,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projets\\CleanCode\\Chapter14_12\\Chapter14_12.Tests\\Chapter14_12.Tests.csproj",
+      "projectUniqueName": "D:\\Projets\\CleanCodeExercices\\Chapter14_12\\Chapter14_12.Tests\\Chapter14_12.Tests.csproj",
       "projectName": "Chapter14_12.Tests",
-      "projectPath": "D:\\Projets\\CleanCode\\Chapter14_12\\Chapter14_12.Tests\\Chapter14_12.Tests.csproj",
+      "projectPath": "D:\\Projets\\CleanCodeExercices\\Chapter14_12\\Chapter14_12.Tests\\Chapter14_12.Tests.csproj",
       "packagesPath": "C:\\Users\\maxim\\.nuget\\packages\\",
-      "outputPath": "D:\\Projets\\CleanCode\\Chapter14_12\\Chapter14_12.Tests\\obj\\",
+      "outputPath": "D:\\Projets\\CleanCodeExercices\\Chapter14_12\\Chapter14_12.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maxim\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3901,8 +3901,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Projets\\CleanCode\\Chapter14_12\\Chapter14_12\\Chapter14_12.csproj": {
-              "projectPath": "D:\\Projets\\CleanCode\\Chapter14_12\\Chapter14_12\\Chapter14_12.csproj"
+            "D:\\Projets\\CleanCodeExercices\\Chapter14_12\\Chapter14_12\\Chapter14_12.csproj": {
+              "projectPath": "D:\\Projets\\CleanCodeExercices\\Chapter14_12\\Chapter14_12\\Chapter14_12.csproj"
             }
           }
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "35YOjJDitu37N1jHSEu4n6PQSUYdnBNuNwXCZn/UukoH3fdx1aaTa65QgvJl8pkDh6/1Jz8BwdrV2bq9/bRRCw==",
+  "dgSpecHash": "L2aLB6BCHuofXBgpwmuFgDiO5TIC9dVVyMlvUUjDsU5s7aHdrit8iUsn887CPHEQjoyyezozl/VZPqJ1yoh4wA==",
   "success": true,
-  "projectFilePath": "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8.Tests\\Chapter14_8.Tests.csproj",
+  "projectFilePath": "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8.Tests\\Chapter14_8.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maxim\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\maxim\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",

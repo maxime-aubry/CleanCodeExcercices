@@ -163,7 +163,7 @@ namespace Chapter14_11
             string parameter = null;
             try
             {
-                parameter = args[this.currentArgument];
+                parameter = this.args[this.currentArgument];
                 am.set(parameter);
             }
             catch (IndexOutOfRangeException e)

@@ -37,7 +37,7 @@ namespace Chapter14_8
 
         private bool parse()
         {
-            if (this.schema.Length == 0 && args.Length == 0)
+            if (this.schema.Length == 0 && this.args.Length == 0)
                 return true;
             parseSchema();
             try
@@ -117,9 +117,9 @@ namespace Chapter14_8
 
         private bool parseArguments()
         {
-            for (this.currentArgument = 0; this.currentArgument < args.Length; this.currentArgument++)
+            for (this.currentArgument = 0; this.currentArgument < this.args.Length; this.currentArgument++)
             {
-                string arg = args[this.currentArgument];
+                string arg = this.args[this.currentArgument];
                 parseArgument(arg);
             }
             return true;
@@ -174,7 +174,7 @@ namespace Chapter14_8
             string parameter = null;
             try
             {
-                parameter = args[this.currentArgument];
+                parameter = this.args[this.currentArgument];
                 this.intArgs[argChar] = Int32.Parse(parameter);
             }
             catch (IndexOutOfRangeException e)
@@ -199,7 +199,7 @@ namespace Chapter14_8
             this.currentArgument++;
             try
             {
-                this.stringArgs[argChar] = args[this.currentArgument];
+                this.stringArgs[argChar] = this.args[this.currentArgument];
             }
             catch (IndexOutOfRangeException e)
             {

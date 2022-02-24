@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projets\\CleanCode\\Chapter14_12\\Chapter14_12\\Chapter14_12.csproj",
+      "projectUniqueName": "D:\\Projets\\CleanCodeExercices\\Chapter14_12\\Chapter14_12\\Chapter14_12.csproj",
       "projectName": "Chapter14_12",
-      "projectPath": "D:\\Projets\\CleanCode\\Chapter14_12\\Chapter14_12\\Chapter14_12.csproj",
+      "projectPath": "D:\\Projets\\CleanCodeExercices\\Chapter14_12\\Chapter14_12\\Chapter14_12.csproj",
       "packagesPath": "C:\\Users\\maxim\\.nuget\\packages\\",
-      "outputPath": "D:\\Projets\\CleanCode\\Chapter14_12\\Chapter14_12\\obj\\",
+      "outputPath": "D:\\Projets\\CleanCodeExercices\\Chapter14_12\\Chapter14_12\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maxim\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8.Tests\\Chapter14_8.Tests.csproj": {}
+    "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8.Tests\\Chapter14_8.Tests.csproj": {}
   },
   "projects": {
-    "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8.Tests\\Chapter14_8.Tests.csproj": {
+    "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8.Tests\\Chapter14_8.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8.Tests\\Chapter14_8.Tests.csproj",
+        "projectUniqueName": "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8.Tests\\Chapter14_8.Tests.csproj",
         "projectName": "Chapter14_8.Tests",
-        "projectPath": "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8.Tests\\Chapter14_8.Tests.csproj",
+        "projectPath": "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8.Tests\\Chapter14_8.Tests.csproj",
         "packagesPath": "C:\\Users\\maxim\\.nuget\\packages\\",
-        "outputPath": "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8.Tests\\obj\\",
+        "outputPath": "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\maxim\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj": {
-                "projectPath": "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj"
+              "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj": {
+                "projectPath": "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj"
               }
             }
           }
@@ -82,14 +82,14 @@
         }
       }
     },
-    "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj": {
+    "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj",
+        "projectUniqueName": "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj",
         "projectName": "Chapter14_8",
-        "projectPath": "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj",
+        "projectPath": "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8\\Chapter14_8.csproj",
         "packagesPath": "C:\\Users\\maxim\\.nuget\\packages\\",
-        "outputPath": "D:\\Projets\\CleanCode\\Chapter14_8\\Chapter14_8\\obj\\",
+        "outputPath": "D:\\Projets\\CleanCodeExercices\\Chapter14_8\\Chapter14_8\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\maxim\\AppData\\Roaming\\NuGet\\NuGet.Config",
