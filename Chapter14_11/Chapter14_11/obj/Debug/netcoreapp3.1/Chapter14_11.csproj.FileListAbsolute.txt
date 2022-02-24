@@ -1,0 +1,14 @@
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\bin\Debug\netcoreapp3.1\Chapter14_11.exe
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\bin\Debug\netcoreapp3.1\Chapter14_11.deps.json
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\bin\Debug\netcoreapp3.1\Chapter14_11.runtimeconfig.json
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\bin\Debug\netcoreapp3.1\Chapter14_11.runtimeconfig.dev.json
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\bin\Debug\netcoreapp3.1\Chapter14_11.dll
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\bin\Debug\netcoreapp3.1\Chapter14_11.pdb
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\obj\Debug\netcoreapp3.1\Chapter14_11.csproj.AssemblyReference.cache
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\obj\Debug\netcoreapp3.1\Chapter14_11.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\obj\Debug\netcoreapp3.1\Chapter14_11.AssemblyInfoInputs.cache
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\obj\Debug\netcoreapp3.1\Chapter14_11.AssemblyInfo.cs
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\obj\Debug\netcoreapp3.1\Chapter14_11.csproj.CoreCompileInputs.cache
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\obj\Debug\netcoreapp3.1\Chapter14_11.dll
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\obj\Debug\netcoreapp3.1\Chapter14_11.pdb
+D:\Projets\CleanCode\Chapter14_11\Chapter14_11\obj\Debug\netcoreapp3.1\Chapter14_11.genruntimeconfig.cache
