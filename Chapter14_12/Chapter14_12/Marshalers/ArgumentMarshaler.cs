@@ -1,9 +1,11 @@
-﻿namespace Chapter14_12.Marshalers
-{
-    public abstract class ArgumentMarshaler
-    {
-        public abstract void set(string value);
+﻿using System.Collections.Generic;
 
-        public abstract object get();
+namespace Chapter14_12.Marshalers
+{
+    public interface ArgumentMarshaler
+    {
+        void set(IEnumerator<string> currentArgument);
+
+        object get();
     }
 }

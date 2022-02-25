@@ -10,6 +10,7 @@ namespace Chapter14_12.Tests
         public void testCreateWithNoSchemaOrArguments()
         {
             Args args = new Args("", new string[0]);
+            Assert.IsTrue(args.isValid());
             Assert.AreEqual(0, args.cardinality());
         }
 
@@ -17,6 +18,7 @@ namespace Chapter14_12.Tests
         public void testWithNoSchemaButWithOneArgument()
         {
             Args args = new Args("", new string[] { "-x" });
+            Assert.IsFalse(args.isValid());
             Assert.AreEqual("Argument(s) -x unexpected.", args.errorMessage());
         }
 
@@ -24,6 +26,7 @@ namespace Chapter14_12.Tests
         public void testWithNoSchemaButWithMultipleArguments()
         {
             Args args = new Args("", new string[] { "-x", "-y" });
+            Assert.IsFalse(args.isValid());
             Assert.AreEqual("Argument(s) -xy unexpected.", args.errorMessage());
         }
 
@@ -57,7 +60,9 @@ namespace Chapter14_12.Tests
         public void testSimpleBooleanPresent()
         {
             Args args = new Args("x", new string[] { "-x" });
+            Assert.IsTrue(args.isValid());
             Assert.AreEqual(1, args.cardinality());
+            Assert.IsTrue(args.has('x'));
             Assert.AreEqual(true, args.getBoolean('x'));
         }
 
@@ -65,6 +70,7 @@ namespace Chapter14_12.Tests
         public void testSimpleStringPresent()
         {
             Args args = new Args("x*", new string[] { "-x", "param" });
+            Assert.IsTrue(args.isValid());
             Assert.AreEqual(1, args.cardinality());
             Assert.IsTrue(args.has('x'));
             Assert.AreEqual("param", args.getString('x'));
@@ -74,6 +80,9 @@ namespace Chapter14_12.Tests
         public void testMissingStringArgument()
         {
             Args args = new Args("x*", new string[] { "-x" });
+            Assert.IsFalse(args.isValid());
+            Assert.AreEqual(0, args.cardinality());
+            Assert.IsFalse(args.has('x'));
             Assert.AreEqual("Could not find string parameter for x.", args.errorMessage());
         }
 
@@ -81,6 +90,7 @@ namespace Chapter14_12.Tests
         public void testSpacesInFormat()
         {
             Args args = new Args("x, y", new string[] { "-xy" });
+            Assert.IsTrue(args.isValid());
             Assert.AreEqual(2, args.cardinality());
             Assert.IsTrue(args.has('x'));
             Assert.IsTrue(args.has('y'));
@@ -90,6 +100,7 @@ namespace Chapter14_12.Tests
         public void testSimpleIntPresent()
         {
             Args args = new Args("x#", new string[] { "-x", "42" });
+            Assert.IsTrue(args.isValid());
             Assert.AreEqual(1, args.cardinality());
             Assert.IsTrue(args.has('x'));
             Assert.AreEqual(42, args.getInt('x'));
@@ -99,6 +110,9 @@ namespace Chapter14_12.Tests
         public void testInvalidInteger()
         {
             Args args = new Args("x#", new string[] { "-x", "Forty two" });
+            Assert.IsFalse(args.isValid());
+            Assert.AreEqual(0, args.cardinality());
+            Assert.IsFalse(args.has('x'));
             Assert.AreEqual("Argument -x expects an integer but was 'Forty two'.", args.errorMessage());
         }
 
@@ -106,7 +120,41 @@ namespace Chapter14_12.Tests
         public void testMissingInteger()
         {
             Args args = new Args("x#", new string[] { "-x" });
+            Assert.IsFalse(args.isValid());
+            Assert.AreEqual(0, args.cardinality());
+            Assert.IsFalse(args.has('x'));
             Assert.AreEqual("Could not find integer parameter for -x.", args.errorMessage());
+        }
+
+        [Test]
+        public void testSimpleDoublePresent()
+        {
+            Args args = new Args("x##", new string[] { "-x", "42.3" });
+            Assert.IsTrue(args.isValid());
+            Assert.AreEqual(1, args.cardinality());
+            Assert.IsTrue(args.has('x'));
+            Assert.AreEqual(42.3, args.getDouble('x'), .001);
+        }
+
+        [Test]
+        public void testInvalidDouble()
+        {
+            Args args = new Args("x##", new string[] { "-x", "Forty two" });
+            Assert.IsFalse(args.isValid());
+            Assert.AreEqual(0, args.cardinality());
+            Assert.IsTrue(args.has('x'));
+            Assert.AreEqual(0, args.getInt('x'));
+            Assert.AreEqual("Argument -x expects a double but was 'Forty two'.", args.errorMessage());
+        }
+
+        [Test]
+        public void testMissingDouble()
+        {
+            Args args = new Args("x##", new string[] { "-x" });
+            Assert.IsFalse(args.isValid());
+            Assert.AreEqual(0, args.cardinality());
+            Assert.IsFalse(args.has('x'));
+            Assert.AreEqual("Could not find double parameter for -x.", args.errorMessage());
         }
     }
 }

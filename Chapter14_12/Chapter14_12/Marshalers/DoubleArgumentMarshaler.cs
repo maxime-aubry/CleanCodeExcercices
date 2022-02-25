@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Chapter14_12.Marshalers
 {
-    public class IntegerArgumentMarshaler : ArgumentMarshaler
+    public class DoubleArgumentMarshaler : ArgumentMarshaler
     {
-        private int integerValue = 0;
+        private double doubleValue = 0;
 
         public void set(IEnumerator<string> currentArgument)
         {
@@ -13,24 +13,24 @@ namespace Chapter14_12.Marshalers
             try
             {
                 parameter = currentArgument.Current;
-                this.integerValue = Int32.Parse(parameter);
+                this.doubleValue = double.Parse(parameter);
             }
             catch (InvalidOperationException e)
             {
-                errorCode = ArgsException.ErrorCode.MISSING_INTEGER;
+                errorCode = ArgsException.ErrorCode.MISSING_DOUBLE;
                 throw new ArgsException();
             }
             catch (FormatException e)
             {
                 errorParameter = parameter;
-                errorCode = ArgsException.ErrorCode.INVALID_INTEGER;
+                errorCode = ArgsException.ErrorCode.INVALID_DOUBLE;
                 throw new ArgsException();
             }
         }
 
         public object get()
         {
-            return this.integerValue;
+            return this.doubleValue;
         }
     }
 }

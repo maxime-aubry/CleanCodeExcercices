@@ -8,35 +8,37 @@ namespace Chapter14_12
     public class Args
     {
         private string schema;
-        private string[] args;
         private bool valid = true;
         private SortedSet<char> unexpectedArguments = new SortedSet<char>();
         private Dictionary<char, ArgumentMarshaler> marshalers = new Dictionary<char, ArgumentMarshaler>();
         private HashSet<char> argsFound = new HashSet<char>();
-        private int currentArgument;
+        private IEnumerator<string> currentArgument;
         private char errorArgumentId = '\0';
         private string errorParameter = "TILT";
-        private ErrorCode errorCode = ErrorCode.OK;
+        private ArgsException.ErrorCode errorCode = ArgsException.ErrorCode.OK;
+        public List<string> argsList;
 
-        public enum ErrorCode
-        {
-            OK,
-            MISSING_STRING,
-            MISSING_INTEGER,
-            INVALID_INTEGER,
-            UNEXPECTED_ARGUMENT
-        }
+        //public enum ErrorCode
+        //{
+        //    OK,
+        //    MISSING_STRING,
+        //    MISSING_INTEGER,
+        //    INVALID_INTEGER,
+        //    MISSING_DOUBLE,
+        //    INVALID_DOUBLE,
+        //    UNEXPECTED_ARGUMENT
+        //}
 
         public Args(string schema, string[] args)
         {
             this.schema = schema;
-            this.args = args;
+            this.argsList = new List<string>(args);
             this.valid = parse();
         }
 
         private bool parse()
         {
-            if (this.schema.Length == 0 && this.args.Length == 0)
+            if (this.schema.Length == 0 && this.argsList.Count == 0)
                 return true;
             parseSchema();
             try
@@ -68,42 +70,29 @@ namespace Chapter14_12
             char elementId = element[0];
             string elementTail = element.Substring(1);
             validateSchemaElementId(elementId);
-            if (isBooleanSchemaElement(elementTail))
+            if (elementTail.Length == 0)
                 this.marshalers[elementId] = new BooleanArgumentMarshaler();
-            else if (isStringSchemaElement(elementTail))
+            else if (elementTail.Equals("*"))
                 this.marshalers[elementId] = new StringArgumentMarshaler();
-            else if (isIntegerSchemaElement(elementTail))
+            else if (elementTail.Equals("#"))
                 this.marshalers[elementId] = new IntegerArgumentMarshaler();
+            else if (elementTail.Equals("##"))
+                this.marshalers[elementId] = new DoubleArgumentMarshaler();
             else
-                throw new FormatException($"Arguement: {elementId} has invalid format: {elementTail}.");
+                throw new ArgsException($"Arguement: {elementId} has invalid format: {elementTail}.");
         }
 
         private void validateSchemaElementId(char elementId)
         {
             if (!char.IsLetter(elementId))
-                throw new FormatException("Bad characted:" + elementId + "in Args format: " + schema);
-        }
-
-        private bool isStringSchemaElement(string elementTail)
-        {
-            return elementTail.Equals("*");
-        }
-
-        private bool isBooleanSchemaElement(string elementTail)
-        {
-            return elementTail.Length == 0;
-        }
-
-        private bool isIntegerSchemaElement(string elementTail)
-        {
-            return elementTail.Equals("#");
+                throw new ArgsException("Bad characted:" + elementId + "in Args format: " + schema);
         }
 
         private bool parseArguments()
         {
-            for (this.currentArgument = 0; this.currentArgument < this.args.Length; this.currentArgument++)
+            for (this.currentArgument = this.argsList.GetEnumerator(); this.currentArgument.MoveNext();)
             {
-                string arg = this.args[this.currentArgument];
+                string arg = currentArgument.Current;
                 parseArgument(arg);
             }
             return true;
@@ -128,7 +117,7 @@ namespace Chapter14_12
             else
             {
                 this.unexpectedArguments.Add(argChar);
-                this.errorCode = ErrorCode.UNEXPECTED_ARGUMENT;
+                this.errorCode = ArgsException.ErrorCode.UNEXPECTED_ARGUMENT;
                 this.valid = false;
             }
         }
@@ -136,72 +125,19 @@ namespace Chapter14_12
         private bool setArgument(char argChar)
         {
             ArgumentMarshaler am = this.marshalers.GetValueOrDefault(argChar);
+            if (am == null)
+                return false;
 
             try
             {
-                if (am is BooleanArgumentMarshaler)
-                    setBooleanArg(am);
-                else if (am is StringArgumentMarshaler)
-                    setStringArg(am);
-                else if (am is IntegerArgumentMarshaler)
-                    setIntArg(am);
-                else
-                    return false;
+                am.set(this.currentArgument);
+                return true;
             }
             catch (ArgsException e)
             {
                 this.valid = false;
                 this.errorArgumentId = argChar;
                 throw e;
-            }
-            return true;
-        }
-
-        private void setIntArg(ArgumentMarshaler am)
-        {
-            this.currentArgument++;
-            string parameter = null;
-            try
-            {
-                parameter = this.args[this.currentArgument];
-                am.set(parameter);
-            }
-            catch (IndexOutOfRangeException e)
-            {
-                this.errorCode = ErrorCode.MISSING_INTEGER;
-                throw new ArgsException();
-            }
-            catch (ArgsException e)
-            {
-                this.errorParameter = parameter;
-                this.errorCode = ErrorCode.INVALID_INTEGER;
-                throw e;
-            }
-        }
-
-        private void setStringArg(ArgumentMarshaler am)
-        {
-            this.currentArgument++;
-            try
-            {
-                am.set(this.args[this.currentArgument]);
-            }
-            catch (IndexOutOfRangeException e)
-            {
-                this.errorCode = ErrorCode.MISSING_STRING;
-                throw new ArgsException();
-            }
-        }
-
-        private void setBooleanArg(ArgumentMarshaler am)
-        {
-            try
-            {
-                am.set("true");
-            }
-            catch (ArgsException e)
-            {
-
             }
         }
 
@@ -222,16 +158,20 @@ namespace Chapter14_12
         {
             switch (this.errorCode)
             {
-                case ErrorCode.OK:
+                case ArgsException.ErrorCode.OK:
                     throw new Exception("TILT: Should not get here.");
-                case ErrorCode.UNEXPECTED_ARGUMENT:
+                case ArgsException.ErrorCode.UNEXPECTED_ARGUMENT:
                     return unexpectedArgumentMessage();
-                case ErrorCode.MISSING_STRING:
+                case ArgsException.ErrorCode.MISSING_STRING:
                     return $"Could not find string parameter for {this.errorArgumentId}.";
-                case ErrorCode.INVALID_INTEGER:
+                case ArgsException.ErrorCode.INVALID_INTEGER:
                     return $"Argument -{this.errorArgumentId} expects an integer but was '{this.errorParameter}'.";
-                case ErrorCode.MISSING_INTEGER:
+                case ArgsException.ErrorCode.MISSING_INTEGER:
                     return $"Could not find integer parameter for -{this.errorArgumentId}.";
+                case ArgsException.ErrorCode.INVALID_DOUBLE:
+                    return $"Argument -{this.errorArgumentId} expects an double but was '{this.errorParameter}'.";
+                case ArgsException.ErrorCode.MISSING_DOUBLE:
+                    return $"Could not find double parameter for -{this.errorArgumentId}.";
             }
             return "";
         }
@@ -274,6 +214,19 @@ namespace Chapter14_12
             }
         }
 
+        public double getDouble(char arg)
+        {
+            ArgumentMarshaler am = this.marshalers.GetValueOrDefault(arg);
+            try
+            {
+                return (am != null) ? 0 : (double)am.get();
+            }
+            catch (Exception e)
+            {
+                return 0.0;
+            }
+        }
+
         public bool getBoolean(char arg)
         {
             ArgumentMarshaler am = this.marshalers.GetValueOrDefault(arg);
@@ -297,11 +250,6 @@ namespace Chapter14_12
         public bool isValid()
         {
             return this.valid;
-        }
-
-        public class ArgsException : Exception
-        {
-
         }
     }
 }
