@@ -18,7 +18,6 @@ namespace Chapter14_11.Tests
         public void testWithNoSchemaButWithOneArgument()
         {
             Args args = new Args("", new string[] { "-x" });
-            Assert.IsFalse(args.isValid());
             Assert.AreEqual("Argument(s) -x unexpected.", args.errorMessage());
         }
 
@@ -26,7 +25,6 @@ namespace Chapter14_11.Tests
         public void testWithNoSchemaButWithMultipleArguments()
         {
             Args args = new Args("", new string[] { "-x", "-y" });
-            Assert.IsFalse(args.isValid());
             Assert.AreEqual("Argument(s) -xy unexpected.", args.errorMessage());
         }
 
@@ -63,7 +61,7 @@ namespace Chapter14_11.Tests
             Assert.IsTrue(args.isValid());
             Assert.AreEqual(1, args.cardinality());
             Assert.IsTrue(args.has('x'));
-            Assert.AreEqual(true, args.getBoolean('x'));
+            Assert.IsTrue(args.getBoolean('x'));
         }
 
         [Test]
@@ -80,9 +78,6 @@ namespace Chapter14_11.Tests
         public void testMissingStringArgument()
         {
             Args args = new Args("x*", new string[] { "-x" });
-            Assert.IsFalse(args.isValid());
-            Assert.AreEqual(0, args.cardinality());
-            Assert.IsFalse(args.has('x'));
             Assert.AreEqual("Could not find string parameter for x.", args.errorMessage());
         }
 
@@ -110,9 +105,6 @@ namespace Chapter14_11.Tests
         public void testInvalidInteger()
         {
             Args args = new Args("x#", new string[] { "-x", "Forty two" });
-            Assert.IsFalse(args.isValid());
-            Assert.AreEqual(0, args.cardinality());
-            Assert.IsFalse(args.has('x'));
             Assert.AreEqual("Argument -x expects an integer but was 'Forty two'.", args.errorMessage());
         }
 
@@ -120,9 +112,6 @@ namespace Chapter14_11.Tests
         public void testMissingInteger()
         {
             Args args = new Args("x#", new string[] { "-x" });
-            Assert.IsFalse(args.isValid());
-            Assert.AreEqual(0, args.cardinality());
-            Assert.IsFalse(args.has('x'));
             Assert.AreEqual("Could not find integer parameter for -x.", args.errorMessage());
         }
     }

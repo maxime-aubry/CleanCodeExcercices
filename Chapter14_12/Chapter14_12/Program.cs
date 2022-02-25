@@ -14,7 +14,7 @@ namespace Chapter14_12
                 string directory = arg.getString('d');
                 executeApplication(logging, port, directory);
             }
-            catch (Args.ArgsException e)
+            catch (ArgsException e)
             {
                 Console.WriteLine("Argument error: %s\n", e.Message);
             }
