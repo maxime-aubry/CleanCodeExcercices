@@ -1,0 +1,5 @@
+D:\Projets\CleanCodeExercices\Chapter14_15\Chapter14_15\obj\Debug\netcoreapp3.1\Chapter14_15.csproj.AssemblyReference.cache
+D:\Projets\CleanCodeExercices\Chapter14_15\Chapter14_15\obj\Debug\netcoreapp3.1\Chapter14_15.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projets\CleanCodeExercices\Chapter14_15\Chapter14_15\obj\Debug\netcoreapp3.1\Chapter14_15.AssemblyInfoInputs.cache
+D:\Projets\CleanCodeExercices\Chapter14_15\Chapter14_15\obj\Debug\netcoreapp3.1\Chapter14_15.AssemblyInfo.cs
+D:\Projets\CleanCodeExercices\Chapter14_15\Chapter14_15\obj\Debug\netcoreapp3.1\Chapter14_15.csproj.CoreCompileInputs.cache

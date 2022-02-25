@@ -18,17 +18,6 @@ namespace Chapter14_12
         private ArgsException.ErrorCode errorCode = ArgsException.ErrorCode.OK;
         public List<string> argsList;
 
-        //public enum ErrorCode
-        //{
-        //    OK,
-        //    MISSING_STRING,
-        //    MISSING_INTEGER,
-        //    INVALID_INTEGER,
-        //    MISSING_DOUBLE,
-        //    INVALID_DOUBLE,
-        //    UNEXPECTED_ARGUMENT
-        //}
-
         public Args(string schema, string[] args)
         {
             this.schema = schema;

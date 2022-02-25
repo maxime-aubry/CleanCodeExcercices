@@ -12,8 +12,6 @@ namespace Chapter14_13
 
         public ArgsException(string message) : base(message) { }
 
-        //public ArgsException(string message, Exception innerException) : base(message, innerException) { }
-
         public enum ErrorCode
         {
             OK,
