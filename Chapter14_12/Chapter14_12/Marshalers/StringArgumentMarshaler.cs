@@ -15,7 +15,7 @@ namespace Chapter14_12.Marshalers
             }
             catch (InvalidOperationException e)
             {
-                errorCode = ArgsException.ErrorCode.MISSING_STRING;
+                //errorCode = ArgsException.ErrorCode.MISSING_STRING;
                 throw new ArgsException();
             }
         }

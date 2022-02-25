@@ -17,13 +17,13 @@ namespace Chapter14_12.Marshalers
             }
             catch (InvalidOperationException e)
             {
-                errorCode = ArgsException.ErrorCode.MISSING_DOUBLE;
+                //errorCode = ArgsException.ErrorCode.MISSING_DOUBLE;
                 throw new ArgsException();
             }
             catch (FormatException e)
             {
-                errorParameter = parameter;
-                errorCode = ArgsException.ErrorCode.INVALID_DOUBLE;
+                //errorParameter = parameter;
+                //errorCode = ArgsException.ErrorCode.INVALID_DOUBLE;
                 throw new ArgsException();
             }
         }
