@@ -1,0 +1,6 @@
+D:\Projets\CleanCodeExercices\Chapter14_14\Chapter14_14.Tests\bin\Debug\netcoreapp3.1\CoverletSourceRootsMapping
+D:\Projets\CleanCodeExercices\Chapter14_14\Chapter14_14.Tests\obj\Debug\netcoreapp3.1\Chapter14_14.Tests.csproj.AssemblyReference.cache
+D:\Projets\CleanCodeExercices\Chapter14_14\Chapter14_14.Tests\obj\Debug\netcoreapp3.1\Chapter14_14.Tests.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projets\CleanCodeExercices\Chapter14_14\Chapter14_14.Tests\obj\Debug\netcoreapp3.1\Chapter14_14.Tests.AssemblyInfoInputs.cache
+D:\Projets\CleanCodeExercices\Chapter14_14\Chapter14_14.Tests\obj\Debug\netcoreapp3.1\Chapter14_14.Tests.AssemblyInfo.cs
+D:\Projets\CleanCodeExercices\Chapter14_14\Chapter14_14.Tests\obj\Debug\netcoreapp3.1\Chapter14_14.Tests.csproj.CoreCompileInputs.cache
