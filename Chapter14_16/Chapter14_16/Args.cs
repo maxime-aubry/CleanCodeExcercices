@@ -100,7 +100,7 @@ namespace Chapter14_16
                 this.argsFound.Add(argChar);
             else
             {
-                this.valid = false;
+                throw new ArgsException(ArgsException.ErrorCode.UNEXPECTED_ARGUMENT, argChar, null);
             }
         }
 

@@ -9,7 +9,6 @@ namespace Chapter14_15
     {
         private string schema;
         private bool valid = true;
-        private SortedSet<char> unexpectedArguments = new SortedSet<char>();
         private Dictionary<char, ArgumentMarshaler> marshalers = new Dictionary<char, ArgumentMarshaler>();
         private HashSet<char> argsFound = new HashSet<char>();
         private IEnumerator<string> currentArgument;
@@ -105,9 +104,7 @@ namespace Chapter14_15
                 this.argsFound.Add(argChar);
             else
             {
-                this.unexpectedArguments.Add(argChar);
-                this.errorCode = ArgsException.ErrorCode.UNEXPECTED_ARGUMENT;
-                this.valid = false;
+                throw new ArgsException(ArgsException.ErrorCode.UNEXPECTED_ARGUMENT, argChar, null);
             }
         }
 
@@ -142,18 +139,6 @@ namespace Chapter14_15
             else
                 return "";
         }
-
-        //private string unexpectedArgumentMessage()
-        //{
-        //    StringBuilder message = new StringBuilder("Argument(s) -");
-        //    foreach (char c in this.unexpectedArguments)
-        //    {
-        //        message.Append(c);
-        //    }
-        //    message.Append(" unexpected.");
-        //    return message.ToString();
-        //}
-
 
         public string getString(char arg)
         {

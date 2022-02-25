@@ -78,6 +78,12 @@ namespace Chapter14_15
                     return $"Argument -{this.errorArgumentId} expects an double but was '{this.errorParameter}'.";
                 case ArgsException.ErrorCode.MISSING_DOUBLE:
                     return $"Could not find double parameter for -{this.errorArgumentId}.";
+                case ArgsException.ErrorCode.INVALID_FORMAT:
+                    return $"Arguement: {this.errorArgumentId} has invalid format: '{this.errorParameter}'.";
+                case ArgsException.ErrorCode.INVALID_ARGUMENT_NAME:
+                    return $"'{this.errorArgumentId}' is not a valid argument name.";
+                case ArgsException.ErrorCode.INVALID_ARGUMENT_FORMAT:
+                    return $"'{this.errorParameter}' is not a valid argument format.";
             }
             return "";
         }
@@ -90,7 +96,10 @@ namespace Chapter14_15
             INVALID_INTEGER,
             MISSING_DOUBLE,
             INVALID_DOUBLE,
-            UNEXPECTED_ARGUMENT
+            UNEXPECTED_ARGUMENT,
+            INVALID_FORMAT,
+            INVALID_ARGUMENT_NAME,
+            INVALID_ARGUMENT_FORMAT
         }
     }
 }
