@@ -1,7 +1,6 @@
 ﻿using Chapter14_15.Marshalers;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Chapter14_15
 {
@@ -12,9 +11,6 @@ namespace Chapter14_15
         private Dictionary<char, ArgumentMarshaler> marshalers = new Dictionary<char, ArgumentMarshaler>();
         private HashSet<char> argsFound = new HashSet<char>();
         private IEnumerator<string> currentArgument;
-        private char errorArgumentId = '\0';
-        private string errorParameter = "TILT";
-        private ArgsException.ErrorCode errorCode = ArgsException.ErrorCode.OK;
         public List<string> argsList;
 
         public Args(string schema, string[] args)
@@ -67,13 +63,13 @@ namespace Chapter14_15
             else if (elementTail.Equals("##"))
                 this.marshalers[elementId] = new DoubleArgumentMarshaler();
             else
-                throw new ArgsException($"Arguement: {elementId} has invalid format: {elementTail}.");
+                throw new ArgsException(ArgsException.ErrorCode.INVALID_FORMAT, elementId, elementTail);
         }
 
         private void validateSchemaElementId(char elementId)
         {
             if (!char.IsLetter(elementId))
-                throw new ArgsException("Bad characted:" + elementId + "in Args format: " + schema);
+                throw new ArgsException(ArgsException.ErrorCode.INVALID_ARGUMENT_NAME, elementId, null);
         }
 
         private bool parseArguments()
@@ -116,13 +112,13 @@ namespace Chapter14_15
 
             try
             {
+                this.currentArgument.MoveNext();
                 am.set(this.currentArgument);
                 return true;
             }
             catch (ArgsException e)
             {
-                this.valid = false;
-                this.errorArgumentId = argChar;
+                e.setErrorArgumentId(argChar);
                 throw e;
             }
         }
@@ -171,7 +167,7 @@ namespace Chapter14_15
             ArgumentMarshaler am = this.marshalers.GetValueOrDefault(arg);
             try
             {
-                return (am != null) ? 0 : (double)am.get();
+                return (am == null) ? 0 : (double)am.get();
             }
             catch (Exception e)
             {

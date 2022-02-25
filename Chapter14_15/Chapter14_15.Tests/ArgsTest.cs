@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 
 namespace Chapter14_15.Tests
 {
@@ -49,7 +48,7 @@ namespace Chapter14_15.Tests
             {
                 new Args("*", new string[] { });
             }
-            catch (FormatException e)
+            catch (ArgsException e)
             {
                 Assert.AreEqual(ArgsException.ErrorCode.INVALID_ARGUMENT_NAME, e.getErrorCode());
                 Assert.AreEqual('*', e.getErrorArgumentId());
@@ -63,7 +62,7 @@ namespace Chapter14_15.Tests
             {
                 new Args("f~", new string[] { });
             }
-            catch (Exception e)
+            catch (ArgsException e)
             {
                 Assert.AreEqual(ArgsException.ErrorCode.INVALID_FORMAT, e.getErrorCode());
                 Assert.AreEqual('f', e.getErrorArgumentId());

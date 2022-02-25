@@ -55,13 +55,13 @@ namespace Chapter14_16
             string elementTail = element.Substring(1);
             validateSchemaElementId(elementId);
             if (elementTail.Length == 0)
-                this.marshalers[elementId] = new BooleanArgumentMarshaler(elementId);
+                this.marshalers[elementId] = new BooleanArgumentMarshaler();
             else if (elementTail.Equals("*"))
-                this.marshalers[elementId] = new StringArgumentMarshaler(elementId);
+                this.marshalers[elementId] = new StringArgumentMarshaler();
             else if (elementTail.Equals("#"))
-                this.marshalers[elementId] = new IntegerArgumentMarshaler(elementId);
+                this.marshalers[elementId] = new IntegerArgumentMarshaler();
             else if (elementTail.Equals("##"))
-                this.marshalers[elementId] = new DoubleArgumentMarshaler(elementId);
+                this.marshalers[elementId] = new DoubleArgumentMarshaler();
             else
                 throw new ArgsException(ArgsException.ErrorCode.INVALID_FORMAT, elementId, elementTail);
         }
@@ -118,7 +118,7 @@ namespace Chapter14_16
             }
             catch (ArgsException e)
             {
-                this.valid = false;
+                e.setErrorArgumentId(argChar);
                 throw e;
             }
         }
@@ -135,7 +135,6 @@ namespace Chapter14_16
             else
                 return "";
         }
-
 
         public string getString(char arg)
         {

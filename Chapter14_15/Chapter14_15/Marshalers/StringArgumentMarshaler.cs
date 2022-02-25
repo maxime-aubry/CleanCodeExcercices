@@ -13,10 +13,9 @@ namespace Chapter14_15.Marshalers
             {
                 this.stringValue = currentArgument.Current;
             }
-            catch (InvalidOperationException e)
+            catch (ArgumentNullException e)
             {
-                errorCode = ArgsException.ErrorCode.MISSING_STRING;
-                throw new ArgsException();
+                throw new ArgsException(ArgsException.ErrorCode.MISSING_STRING, currentArgument.Current);
             }
         }
 

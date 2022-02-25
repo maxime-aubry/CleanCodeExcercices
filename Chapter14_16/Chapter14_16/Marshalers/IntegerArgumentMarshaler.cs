@@ -5,13 +5,7 @@ namespace Chapter14_16.Marshalers
 {
     public class IntegerArgumentMarshaler : ArgumentMarshaler
     {
-        private char argumentId;
         private int integerValue = 0;
-
-        public IntegerArgumentMarshaler(char argumentId)
-        {
-            this.argumentId = argumentId;
-        }
 
         public void set(IEnumerator<string> currentArgument)
         {
@@ -21,11 +15,11 @@ namespace Chapter14_16.Marshalers
             }
             catch (ArgumentNullException e)
             {
-                throw new ArgsException(ArgsException.ErrorCode.MISSING_INTEGER, this.argumentId, currentArgument.Current);
+                throw new ArgsException(ArgsException.ErrorCode.MISSING_INTEGER, currentArgument.Current);
             }
             catch (FormatException e)
             {
-                throw new ArgsException(ArgsException.ErrorCode.INVALID_INTEGER, this.argumentId, currentArgument.Current);
+                throw new ArgsException(ArgsException.ErrorCode.INVALID_INTEGER, currentArgument.Current);
             }
         }
 

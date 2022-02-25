@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 
 namespace Chapter14_17.Tests
 {
@@ -10,7 +9,7 @@ namespace Chapter14_17.Tests
         public void testUnexpectedMessage()
         {
             ArgsException e = new ArgsException(ArgsException.ErrorCode.UNEXPECTED_ARGUMENT, 'x', null);
-            Assert.AreEqual("Arguement -x unexpetec.", e.errorMessage());
+            Assert.AreEqual("Argument -x unexpected.", e.errorMessage());
         }
 
         [Test]

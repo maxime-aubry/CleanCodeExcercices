@@ -67,9 +67,9 @@ namespace Chapter14_17
                 case ArgsException.ErrorCode.OK:
                     throw new Exception("TILT: Should not get here.");
                 case ArgsException.ErrorCode.UNEXPECTED_ARGUMENT:
-                    return $"Argument {this.errorArgumentId} unexpected..";
+                    return $"Argument -{this.errorArgumentId} unexpected.";
                 case ArgsException.ErrorCode.MISSING_STRING:
-                    return $"Could not find string parameter for {this.errorArgumentId}.";
+                    return $"Could not find string parameter for -{this.errorArgumentId}.";
                 case ArgsException.ErrorCode.INVALID_INTEGER:
                     return $"Argument -{this.errorArgumentId} expects an integer but was '{this.errorParameter}'.";
                 case ArgsException.ErrorCode.MISSING_INTEGER:
@@ -79,11 +79,11 @@ namespace Chapter14_17
                 case ArgsException.ErrorCode.MISSING_DOUBLE:
                     return $"Could not find double parameter for -{this.errorArgumentId}.";
                 case ArgsException.ErrorCode.INVALID_FORMAT:
-                    return $"Arguement: {this.errorArgumentId} has invalid format: '{this.errorParameter}'.";
+                    return $"Arguement: -{this.errorArgumentId} has invalid format: '{this.errorParameter}'.";
                 case ArgsException.ErrorCode.INVALID_ARGUMENT_NAME:
-                    return $"'{this.errorArgumentId}' is not a valid argument name.";
+                    return $"'-{this.errorArgumentId}' is not a valid argument name.";
                 case ArgsException.ErrorCode.INVALID_ARGUMENT_FORMAT:
-                    return $"'{this.errorParameter}' is not a valid argument format.";
+                    return $"'-{this.errorParameter}' is not a valid argument format.";
             }
             return "";
         }

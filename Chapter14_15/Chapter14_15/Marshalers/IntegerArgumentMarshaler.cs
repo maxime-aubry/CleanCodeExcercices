@@ -9,22 +9,17 @@ namespace Chapter14_15.Marshalers
 
         public void set(IEnumerator<string> currentArgument)
         {
-            string parameter = null;
             try
             {
-                parameter = currentArgument.Current;
-                this.integerValue = Int32.Parse(parameter);
+                this.integerValue = Int32.Parse(currentArgument.Current);
             }
-            catch (InvalidOperationException e)
+            catch (ArgumentNullException e)
             {
-                errorCode = ArgsException.ErrorCode.MISSING_INTEGER;
-                throw new ArgsException();
+                throw new ArgsException(ArgsException.ErrorCode.MISSING_INTEGER, currentArgument.Current);
             }
             catch (FormatException e)
             {
-                errorParameter = parameter;
-                errorCode = ArgsException.ErrorCode.INVALID_INTEGER;
-                throw new ArgsException();
+                throw new ArgsException(ArgsException.ErrorCode.INVALID_INTEGER, currentArgument.Current);
             }
         }
 

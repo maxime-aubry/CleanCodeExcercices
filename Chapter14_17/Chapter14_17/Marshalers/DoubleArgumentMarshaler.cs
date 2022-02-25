@@ -6,7 +6,6 @@ namespace Chapter14_17.Marshalers
 {
     public class DoubleArgumentMarshaler : ArgumentMarshaler
     {
-        private char argumentId;
         private double doubleValue = 0;
 
         public void set(IEnumerator<string> currentArgument)
@@ -17,11 +16,11 @@ namespace Chapter14_17.Marshalers
             }
             catch (ArgumentNullException e)
             {
-                throw new ArgsException(ArgsException.ErrorCode.MISSING_DOUBLE, this.argumentId, currentArgument.Current);
+                throw new ArgsException(ArgsException.ErrorCode.MISSING_DOUBLE, currentArgument.Current);
             }
             catch (FormatException e)
             {
-                throw new ArgsException(ArgsException.ErrorCode.INVALID_DOUBLE, this.argumentId, currentArgument.Current);
+                throw new ArgsException(ArgsException.ErrorCode.INVALID_DOUBLE, currentArgument.Current);
             }
         }
 
