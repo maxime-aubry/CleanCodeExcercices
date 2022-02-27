@@ -23,5 +23,17 @@ namespace Chapter14_16.Marshalers
         {
             return this.stringValue;
         }
+
+        public static string getValue(ArgumentMarshaler am)
+        {
+            try
+            {
+                return (am == null) ? "" : (string)am.get();
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
+        }
     }
 }

@@ -6,47 +6,21 @@ namespace Chapter14_16
 {
     public class Args
     {
-        private string schema;
-        private bool valid = true;
         private Dictionary<char, ArgumentMarshaler> marshalers = new Dictionary<char, ArgumentMarshaler>();
         private HashSet<char> argsFound = new HashSet<char>();
         private IEnumerator<string> currentArgument;
-        public List<string> argsList;
 
         public Args(string schema, string[] args)
         {
-            this.schema = schema;
-            this.argsList = new List<string>(args);
-            this.valid = parse();
+            parseSchema(schema);
+            parseArgumentStrings(new List<string>(args));
         }
 
-        private bool parse()
+        private void parseSchema(string schema)
         {
-            if (this.schema.Length == 0 && this.argsList.Count == 0)
-                return true;
-            parseSchema();
-            try
-            {
-                parseArguments();
-            }
-            catch (ArgsException e)
-            {
-
-            }
-            return this.valid;
-        }
-
-        private bool parseSchema()
-        {
-            foreach (string element in this.schema.Split(","))
-            {
+            foreach (string element in schema.Split(','))
                 if (element.Length > 0)
-                {
-                    string trimmedElement = element.Trim();
-                    parseSchemaElement(trimmedElement);
-                }
-            }
-            return true;
+                    parseSchemaElement(element.Trim());
         }
 
         private void parseSchemaElement(string element)
@@ -72,49 +46,34 @@ namespace Chapter14_16
                 throw new ArgsException(ArgsException.ErrorCode.INVALID_ARGUMENT_NAME, elementId, null);
         }
 
-        private bool parseArguments()
+        private void parseArgumentStrings(List<string> argsList)
         {
-            for (this.currentArgument = this.argsList.GetEnumerator(); this.currentArgument.MoveNext();)
+            for (this.currentArgument = argsList.GetEnumerator(); this.currentArgument.MoveNext();)
             {
-                string arg = currentArgument.Current;
-                parseArgument(arg);
-            }
-            return true;
-        }
-
-        private void parseArgument(string arg)
-        {
-            if (arg.StartsWith("-"))
-                parseElements(arg);
-        }
-
-        private void parseElements(string arg)
-        {
-            for (int i = 1; i < arg.Length; i++)
-                parseElement(arg[i]);
-        }
-
-        private void parseElement(char argChar)
-        {
-            if (setArgument(argChar))
-                this.argsFound.Add(argChar);
-            else
-            {
-                throw new ArgsException(ArgsException.ErrorCode.UNEXPECTED_ARGUMENT, argChar, null);
+                string argument = this.currentArgument.Current;
+                if (argument.StartsWith('-'))
+                    parseArgumentCharacters(argument.Substring(1));
             }
         }
 
-        private bool setArgument(char argChar)
+        private void parseArgumentCharacters(string argChars)
+        {
+            for (int i = 0; i < argChars.Length; i++)
+                parseArgumentCharacter(argChars[i]);
+        }
+
+        private void parseArgumentCharacter(char argChar)
         {
             ArgumentMarshaler am = this.marshalers.GetValueOrDefault(argChar);
             if (am == null)
-                return false;
+                throw new ArgsException(ArgsException.ErrorCode.UNEXPECTED_ARGUMENT, argChar, null);
+
+            this.argsFound.Add(argChar);
 
             try
             {
                 this.currentArgument.MoveNext();
                 am.set(this.currentArgument);
-                return true;
             }
             catch (ArgsException e)
             {
@@ -128,76 +87,29 @@ namespace Chapter14_16
             return this.argsFound.Count;
         }
 
-        public string usage()
+        public bool getBoolean(char arg)
         {
-            if (this.schema.Length > 0)
-                return "-[" + this.schema + "]";
-            else
-                return "";
+            return BooleanArgumentMarshaler.getValue(this.marshalers.GetValueOrDefault(arg));
         }
 
         public string getString(char arg)
         {
-            ArgumentMarshaler am = this.marshalers.GetValueOrDefault(arg);
-            try
-            {
-                return (am == null) ? "" : (string)am.get();
-            }
-            catch (InvalidCastException e)
-            {
-                return "";
-            }
+            return StringArgumentMarshaler.getValue(this.marshalers.GetValueOrDefault(arg));
         }
 
         public int getInt(char arg)
         {
-            ArgumentMarshaler am = this.marshalers.GetValueOrDefault(arg);
-            try
-            {
-                return (am == null) ? 0 : (int)am.get();
-            }
-            catch (Exception e)
-            {
-                return 0;
-            }
+            return IntegerArgumentMarshaler.getValue(this.marshalers.GetValueOrDefault(arg));
         }
 
         public double getDouble(char arg)
         {
-            ArgumentMarshaler am = this.marshalers.GetValueOrDefault(arg);
-            try
-            {
-                return (am == null) ? 0 : (double)am.get();
-            }
-            catch (Exception e)
-            {
-                return 0.0;
-            }
-        }
-
-        public bool getBoolean(char arg)
-        {
-            ArgumentMarshaler am = this.marshalers.GetValueOrDefault(arg);
-            bool b;
-            try
-            {
-                b = (am != null && (bool)am.get());
-            }
-            catch (InvalidCastException e)
-            {
-                b = false;
-            }
-            return b;
+            return DoubleArgumentMarshaler.getValue(this.marshalers.GetValueOrDefault(arg));
         }
 
         public bool has(char arg)
         {
             return this.argsFound.Contains(arg);
-        }
-
-        public bool isValid()
-        {
-            return this.valid;
         }
     }
 }

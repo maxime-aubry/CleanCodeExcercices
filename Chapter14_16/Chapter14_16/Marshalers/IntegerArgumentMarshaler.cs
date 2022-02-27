@@ -27,5 +27,17 @@ namespace Chapter14_16.Marshalers
         {
             return this.integerValue;
         }
+
+        public static int getValue(ArgumentMarshaler am)
+        {
+            try
+            {
+                return (am == null) ? 0 : (int)am.get();
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
     }
 }

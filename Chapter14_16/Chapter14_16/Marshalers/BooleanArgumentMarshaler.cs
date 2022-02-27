@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Chapter14_16.Marshalers
 {
@@ -14,6 +15,18 @@ namespace Chapter14_16.Marshalers
         public object get()
         {
             return this.booleanValue;
+        }
+
+        public static bool getValue(ArgumentMarshaler am)
+        {
+            try
+            {
+                return (am != null && (bool)am.get());
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

@@ -28,5 +28,17 @@ namespace Chapter14_16.Marshalers
         {
             return this.doubleValue;
         }
+
+        public static double getValue(ArgumentMarshaler am)
+        {
+            try
+            {
+                return (am == null) ? 0 : (double)am.get();
+            }
+            catch (Exception e)
+            {
+                return 0.0;
+            }
+        }
     }
 }

@@ -9,7 +9,6 @@ namespace Chapter14_16.Tests
         public void testCreateWithNoSchemaOrArguments()
         {
             Args args = new Args("", new string[0]);
-            Assert.IsTrue(args.isValid());
             Assert.AreEqual(0, args.cardinality());
         }
 
@@ -73,7 +72,6 @@ namespace Chapter14_16.Tests
         public void testSimpleBooleanPresent()
         {
             Args args = new Args("x", new string[] { "-x" });
-            Assert.IsTrue(args.isValid());
             Assert.AreEqual(1, args.cardinality());
             Assert.IsTrue(args.has('x'));
             Assert.IsTrue(args.getBoolean('x'));
@@ -83,7 +81,6 @@ namespace Chapter14_16.Tests
         public void testSimpleStringPresent()
         {
             Args args = new Args("x*", new string[] { "-x", "param" });
-            Assert.IsTrue(args.isValid());
             Assert.AreEqual(1, args.cardinality());
             Assert.IsTrue(args.has('x'));
             Assert.AreEqual("param", args.getString('x'));
@@ -107,7 +104,6 @@ namespace Chapter14_16.Tests
         public void testSpacesInFormat()
         {
             Args args = new Args("x, y", new string[] { "-xy" });
-            Assert.IsTrue(args.isValid());
             Assert.AreEqual(2, args.cardinality());
             Assert.IsTrue(args.has('x'));
             Assert.IsTrue(args.has('y'));
@@ -117,7 +113,6 @@ namespace Chapter14_16.Tests
         public void testSimpleIntPresent()
         {
             Args args = new Args("x#", new string[] { "-x", "42" });
-            Assert.IsTrue(args.isValid());
             Assert.AreEqual(1, args.cardinality());
             Assert.IsTrue(args.has('x'));
             Assert.AreEqual(42, args.getInt('x'));
@@ -156,7 +151,6 @@ namespace Chapter14_16.Tests
         public void testSimpleDoublePresent()
         {
             Args args = new Args("x##", new string[] { "-x", "42.3" });
-            Assert.IsTrue(args.isValid());
             Assert.AreEqual(1, args.cardinality());
             Assert.IsTrue(args.has('x'));
             Assert.AreEqual(42.3, args.getDouble('x'), .001);
